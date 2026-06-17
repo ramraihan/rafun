@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAFUN STUDIO ✨</title>
+    <!-- Import Font Modern & Estetik -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Palette warna biru muda cerah premium & gradasi estetik */
+            --bg-gradient: linear-gradient(135deg, #e3f2fd 0%, #cee6ff 50%, #b3daf6 100%);
+            --panel-bg: rgba(255, 255, 255, 0.75);
+            --border-glass: rgba(255, 255, 255, 0.6);
+            
+            --neon-blue: linear-gradient(135deg, #0084ff 0%, #00c6ff 100%);
+            --neon-pink: linear-gradient(135deg, #ff2a5f 0%, #ff7e40 100%);
+            --neon-green: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            
+            --text-main: #0f172a;
+            --text-sub: #475569;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navigasi Mengambang Gaya Premium */
+        .nav-bar {
+            display: flex;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+            border-radius: 24px;
+            padding: 6px;
+            margin: 10px 0 35px 0;
+            max-width: 420px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.05);
+        }
+
+        .nav-item {
+            flex: 1;
+            background: none;
+            border: none;
+            padding: 12px 5px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-sub);
+            cursor: pointer;
+            border-radius: 18px;
+            text-align: center;
+        }
+
+        .nav-item.active {
+            background: #ffffff;
+            color: #0066ff;
+            box-shadow: 0 8px 20px rgba(0, 102, 255, 0.1);
+        }
+
+        /* Container Pembungkus */
+        .container {
+            max-width: 440px;
+            width: 100%;
+        }
+
+        /* Card Efek Kaca Transparan (Glassmorphism) */
+        .glass-panel {
+            background: var(--panel-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+            border-radius: 32px;
+            padding: 35px 28px;
+            box-shadow: 0 20px 50px rgba(0, 68, 180, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brand-title {
+            font-size: 30px;
+            font-weight: 800;
+            margin: 0 0 6px 0;
+            letter-spacing: -0.5px;
+            color: #0052d4; /* Menggunakan warna solid premium agar aman di semua browser HP */
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: var(--text-sub);
+            margin: 0 0 30px 0;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        /* Menu Pilihan di Beranda */
+        .card-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .app-card {
+            background: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 24px;
+            padding: 24px;
+            cursor: pointer;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0, 68, 180, 0.03);
+        }
+
+        .app-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(0, 82, 212, 0.1);
+        }
+
+        .app-card h3 {
+            margin: 0 0 6px 0;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .app-card p {
+            margin: 0;
+            font-size: 13px;
+            color: var(--text-sub);
+            line-height: 1.5;
+        }
+
+        .mini-badge {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 10px;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Section Deskripsi Tambahan di Bagian Bawah Beranda */
+        .footer-info-section {
+            margin-top: 30px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 24px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-info-section h4 {
+            margin: 0 0 8px 0;
+            font-size: 14px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .footer-info-section p {
+            margin: 0 0 12px 0;
+            font-size: 12.5px;
+            color: #475569;
+            line-height: 1.5;
+        }
+
+        .footer-info-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Input & Form Premium */
+        label {
+            display: block;
+            font-weight: 700;
+            font-size: 12px;
+            color: #64748b;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+            padding-left: 4px;
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(0, 102, 255, 0.1);
+            border-radius: 18px;
+            padding: 16px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-main);
+            margin-bottom: 22px;
+            outline: none;
+        }
+
+        input[type="text"]:focus, textarea:focus {
+            background: #ffffff;
+            border-color: #0084ff;
+            box-shadow: 0 0 0 4px rgba(0, 132, 255, 0.1);
+        }
+
+        /* Kotak Tempat Drop/Upload File */
+        .upload-area {
+            border: 2px dashed rgba(0, 132, 255, 0.2);
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 18px;
+            padding: 24px;
+            text-align: center;
+            cursor: pointer;
+            margin-bottom: 22px;
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--text-sub);
+        }
+        
+        .upload-area:hover {
+            border-color: #0084ff;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .img-preview {
+            max-width: 100%;
+            max-height: 160px;
+            border-radius: 14px;
+            margin-top: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            display: none;
+            object-fit: cover;
+        }
+
+        /* Tombol Berpendar Premium (Glow Button) */
+        .glow-btn {
+            width: 100%;
+            border: none;
+            padding: 16px;
+            font-size: 15px;
+            font-weight: 700;
+            color: #ffffff;
+            border-radius: 18px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .glow-btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.08);
+        }
+
+        /* Tempat Hasil Tautan */
+        .link-output-box {
+            background: rgba(0, 132, 255, 0.04);
+            border: 1px dashed rgba(0, 132, 255, 0.3);
+            padding: 16px;
+            border-radius: 16px;
+            font-size: 13px;
+            font-weight: 600;
+            word-break: break-all;
+            margin-bottom: 22px;
+            color: #0066ff;
+            text-align: center;
+        }
+
+        /* Efek Amplop Modern */
+        .envelope-box {
+            width: 150px;
+            height: 100px;
+            background: #ffffff;
+            border-radius: 16px;
+            margin: 35px auto;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 15px 35px rgba(0, 102, 255, 0.1);
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+        
+        .envelope-box::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(0,132,255,0.1) 0%, rgba(0,198,255,0.05) 100%);
+            border-radius: 16px;
+            z-index: 1;
+        }
+
+        .letter-sheet {
+            position: absolute;
+            top: 8px; left: 8px;
+            width: 134px; height: 84px;
+            background: #ffffff;
+            border-radius: 10px;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            color: #0066ff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+        
+        .envelope-box.open {
+            transform: scale(0.95);
+            background: #f1f5f9;
+        }
+        
+        .envelope-box.open .letter-sheet {
+            transform: translateY(-40px);
+            opacity: 0;
+        }
+
+        .result-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-left: 4px solid #0084ff;
+            padding: 22px;
+            border-radius: 20px;
+            margin-top: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+        }
+
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+    <!-- Navigasi Utama Tab Atas -->
+    <div class="nav-bar">
+        <button id="btn-tab-home" class="nav-item active" onclick="pindahMenu('home')">🏠 Home</button>
+        <button id="btn-tab-anonim" class="nav-item" onclick="pindahMenu('anonim')">🤫 Anonim</button>
+        <button id="btn-tab-amplop" class="nav-item" onclick="pindahMenu('amplop')">✉️ Amplop</button>
+    </div>
+
+    <div class="container">
+        <!-- ================= PANEL UTAMA (BERANDA) ================= -->
+        <div id="panel-home">
+            <h1 class="brand-title" style="color: #0052d4;">RAFUN STUDIO ✨</h1>
+            <p class="subtitle">Platform berkirim pesan interaktif premium. Dipisah rapi tanpa tercampur.</p>
+            
+            <div class="card-stack">
+                <div class="app-card" onclick="pindahMenu('anonim')">
+                    <div class="mini-badge" style="background: var(--neon-pink);">Secret</div>
+                    <h3 style="color: #ff2a5f;">🤫 Kotak Pesan Anonim</h3>
+                    <p>Bagi tautan ke status, biarkan temanmu mengirim pesan rahasia atau opini konyol + foto secara anonim.</p>
+                </div>
+                <div class="app-card" onclick="pindahMenu('amplop')">
+                    <div class="mini-badge" style="background: var(--neon-blue);">Premium</div>
+                    <h3 style="color: #0066ff;">✉️ Amplop Surat Ucapan</h3>
+                    <p>Kirim kejutan manis berbentuk kado amplop digital estetik berisi teks ucapan hangat beserta foto khusus.</p>
+                </div>
+            </div>
+
+            <!-- Bagian Deskripsi Tambahan Baru Biar Makin Padat & Informatif -->
+            <div class="footer-info-section">
+                <h4>💡 Tentang RAFUN STUDIO</h4>
+                <p>Aplikasi ini dirancang khusus untuk memudahkan interaksi sosial secara modern tanpa mengandalkan database server eksternal yang rumit. Semua data tautan dikemas secara instan melalui sistem enkripsi URL bawaan browser Anda.</p>
+                <h4>🔒 Keamanan & Privasi Tingkat Tinggi</h4>
+                <p>Setiap pesan anonim yang dikirimkan diproses langsung ke WhatsApp tujuan tanpa melalui perantara pihak ketiga. Privasi identitas pengirim terjaga 100% aman, rahasia, dan bebas dari pelacakan sistem.</p>
+            </div>
+        </div>
+
+        <!-- ================= PANEL MENU 1: PESAN ANONIM ================= -->
+        <div id="panel-anonim" class="glass-panel hidden">
+            <!-- Tahap Pembuatan Link -->
+            <div id="anon-view-1">
+                <h1 class="brand-title" style="color: #ff2a5f;">Pesan Anonim 🤫</h1>
+                <p class="subtitle">Bisa langsung klik bikin link, atau selipkan topik obrolan khusus di bawah ini.</p>
+                
+                <label>Topik Pertanyaan (Opsional)</label>
+                <input type="text" id="input-anon-heading" placeholder="Contoh: Kasih opini jujur tentang aku dong...">
+                
+                <button class="glow-btn" style="background: var(--neon-pink); box-shadow: 0 6px 20px rgba(255, 42, 95, 0.2);" onclick="prosesTautanAnonim()">Buat Tautan Rahasia</button>
+            </div>
+
+            <!-- Tahap Berhasil Dibuat -->
+            <div id="anon-view-2" class="hidden">
+                <h1 class="brand-title">Tautan Siap! 🚀</h1>
+                <p class="subtitle">Salin tautan eksklusif milikmu di bawah ini dan bagikan sekarang juga.</p>
+                <div id="html-anon-link-box" class="link-output-box"></div>
+                <button class="glow-btn" style="background: #25D366; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.2);" onclick="bagikanAnonKeWA()">Bagikan ke WhatsApp Status</button>
+            </div>
+
+            <!-- Tahap Pengisian Sisi Teman -->
+            <div id="anon-view-3" class="hidden">
+                <h1 class="brand-title" id="text-anon-heading" style="color: #ff2a5f;">Kirim Pesan</h1>
+                <p class="subtitle">Ungkapkan pesan konyol atau curhatanmu. Namamu dijamin rahasia.</p>
+                
+                <label>Sisipkan Foto (Opsional)</label>
+                <div class="upload-area" onclick="document.getElementById('input-file-anon').click()">
+                    <span id="info-upload-anon">📸 Pilih Gambar (Boleh langsung dilewati)</span>
+                    <input type="file" id="input-file-anon" accept="image/*" class="hidden" onchange="bacaGambarAnon(this)">
+                    <img id="img-preview-anon" class="img-preview" alt="Preview">
+                </div>
+
+                <label>Isi Pesan Rahasia</label>
+                <textarea id="text-anon-msg-box" rows="4" placeholder="Tulis ungkapan jujur atau pesan serumu di sini..."></textarea>
+                
+                <button class="glow-btn" style="background: var(--neon-pink); box-shadow: 0 6px 20px rgba(255, 42, 95, 0.2);" onclick="submitPesanKeWA()">Kirim Secara Anonim 🚀</button>
+            </div>
+        </div>
+
+        <!-- ================= PANEL MENU 2: AMPLOP UCAPAN ================= -->
+        <div id="panel-amplop" class="glass-panel hidden">
+            <!-- Tahap Pembuatan Amplop -->
+            <div id="amp-view-1">
+                <h1 class="brand-title" style="color: #0066ff;">Bungkus Amplop ✉️</h1>
+                <p class="subtitle">Rakit hadiah digital manis berupa amplop interaktif yang menawan.</p>
+                
+                <label>Nama Pengirim</label>
+                <input type="text" id="input-amp-sender" placeholder="Contoh: Sahabat Terbaikmu / Anonim">
+
+                <label>Lampirkan Foto Momen (Opsional)</label>
+                <div class="upload-area" onclick="document.getElementById('input-file-amp').click()">
+                    <span id="info-upload-amp">📸 Tambah Foto (Boleh langsung dikosongkan)</span>
+                    <input type="file" id="input-file-amp" accept="image/*" class="hidden" onchange="bacaGambarAmp(this)">
+                    <img id="img-preview-amp" class="img-preview" alt="Preview">
+                </div>
+
+                <label>Teks Surat Ucapan</label>
+                <textarea id="text-amp-msg-box" rows="4" placeholder="Tulis kata-kata selamat ulang tahun atau doa terbaikmu..."></textarea>
+                
+                <button class="glow-btn" style="background: var(--neon-blue); box-shadow: 0 6px 20px rgba(0, 102, 255, 0.2);" onclick="prosesTautanAmplop()">Rakit Amplop Cantik</button>
+            </div>
+
+            <!-- Tahap Amplop Selesai Dibuat -->
+            <div id="amp-view-2" class="hidden">
+                <h1 class="brand-title">Amplop Jadi! 💌</h1>
+                <p class="subtitle">Kirimkan tautan hadiah amplop digital ini langsung ke orang spesial.</p>
+                <div id="html-amp-link-box" class="link-output-box"></div>
+                <button class="glow-btn" style="background: #25D366; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.2);" onclick="bagikanAmpKeWA()">Kirim Amplop via WhatsApp</button>
+            </div>
+
+            <!-- Sisi Penerima Jalur Link Amplop -->
+            <div id="amp-view-3" class="hidden" style="text-align: center;">
+                <h1 class="brand-title" style="text-align: left;">Ada Surat Masuk! 📌</h1>
+                <p class="subtitle" style="text-align: left;">Ketuk segel amplop di bawah untuk melihat kejutan di dalamnya.</p>
+                
+                <div class="envelope-box" id="html-envelope-el" onclick="bukaMekanikAmplop()">
+                    <div class="letter-sheet" id="info-envelope-status">BUKA YUK</div>
+                </div>
+
+                <div id="html-reveal-box" class="hidden result-card">
+                    <img id="img-amp-final-view" style="max-width:100%; border-radius:14px; margin-bottom:18px; box-shadow: 0 8px 20px rgba(0,0,0,0.04); display:none;" alt="Lampiran Foto">
+                    <h3 style="margin: 0 0 8px 0; font-size:15px; color: #0066ff; text-align: left;">Isi Surat:</h3>
+                    <p id="text-amp-final-msg" style="white-space: pre-line; line-height: 1.6; margin:0 0 14px 0; text-align: left; font-size:14px; font-weight:600; color: #334155;"></p>
+                    <p style="font-size: 12px; text-align: right; margin: 0; color: var(--text-sub);">Dari: <b id="text-amp-final-sender"></b></p>
+                    
+                    <hr style="border: 0; border-top: 1px dashed rgba(0,132,255,0.2); margin: 25px 0;">
+                    
+                    <h3 style="margin: 0 0 10px 0; font-size:15px; color: #10b981; text-align: left;">Balas Pesan:</h3>
+                    <input type="text" id="input-reply-name" placeholder="Nama kamu (Boleh kosong/anonim)">
+                    <textarea id="text-reply-msg" rows="3" placeholder="Tulis balasan balik langsung ke WA dia..."></textarea>
+                    <button class="glow-btn" style="background: var(--neon-green); box-shadow: 0 6px 20px rgba(16, 185, 129, 0.2);" onclick="kirimBalasanKontanAmp()">Kirim Balasan Kontan 🚀</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let b64FotoAnon = "";
+        let b64FotoAmp = "";
+        let urlFinalAnon = "";
+        let urlFinalAmp = "";
+
+        function pindahMenu(idMenu) {
+            ['panel-home', 'panel-anonim', 'panel-amplop'].forEach(id => document.getElementById(id).classList.add('hidden'));
+            ['btn-tab-home', 'btn-tab-anonim', 'btn-tab-amplop'].forEach(id => document.getElementById(id).classList.remove('active'));
+            document.getElementById('panel-' + idMenu).classList.remove('hidden');
+            document.getElementById('btn-tab-' + idMenu).classList.add('active');
+        }
+
+        window.onload = function() {
+            const tautanQuery = new URLSearchParams(window.location.search);
+            
+            if (tautanQuery.has('q')) {
+                pindahMenu('anonim');
+                document.getElementById('anon-view-1').classList.add('hidden');
+                document.getElementById('anon-view-3').classList.remove('hidden');
+                document.getElementById('text-anon-heading').innerText = `"${decodeURIComponent(tautanQuery.get('q'))}"`;
+            } else if (tautanQuery.has('msg')) {
+                pindahMenu('amplop');
+                document.getElementById('amp-view-1').classList.add('hidden');
+                document.getElementById('amp-view-3').classList.remove('hidden');
+                
+                const loadFoto = localStorage.getItem('rafun_store_img_' + tautanQuery.get('id'));
+                if (loadFoto) {
+                    const viewImg = document.getElementById('img-amp-final-view');
+                    viewImg.src = loadFoto;
+                    viewImg.style.display = "block";
+                }
+            }
+        };
+
+        // --- SISTEM PEMBACA GAMBAR BASE64 ---
+        function bacaGambarAnon(input) {
+            const fileData = input.files[0];
+            if (fileData) {
+                const bacaFile = new FileReader();
+                bacaFile.onload = function(e) {
+                    b64FotoAnon = e.target.result;
+                    document.getElementById('img-preview-anon').src = b64FotoAnon;
+                    document.getElementById('img-preview-anon').style.display = "inline-block";
+                    document.getElementById('info-upload-anon').style.display = "none";
+                }
+                bacaFile.readAsDataURL(fileData);
+            }
+        }
+
+        function bacaGambarAmp(input) {
+            const fileData = input.files[0];
+            if (fileData) {
+                const bacaFile = new FileReader();
+                bacaFile.onload = function(e) {
+                    b64FotoAmp = e.target.result;
+                    document.getElementById('img-preview-amp').src = b64FotoAmp;
+                    document.getElementById('img-preview-amp').style.display = "inline-block";
+                    document.getElementById('info-upload-amp').style.display = "none";
+                }
+                bacaFile.readAsDataURL(fileData);
+            }
+        }
+
+        // --- LOGIKA UTAMA: PESAN ANONIM ---
+        function prosesTautanAnonim() {
+            const isiPrompt = document.getElementById('input-anon-heading').value || "Kirim pesan konyol atau rahasia ke aku dong! 🤫";
+            const domainAwal = window.location.href.split('?')[0];
+            urlFinalAnon = `${domainAwal}?q=${encodeURIComponent(isiPrompt)}`;
+            document.getElementById('html-anon-link-box').innerText = urlFinalAnon;
+            document.getElementById('anon-view-1').classList.add('hidden');
+            document.getElementById('anon-view-2').classList.remove('hidden');
+        }
+        
+        function bagikanAnonKeWA() {
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent('Kirim pesan rahasia atau opini konyol ke aku yuk! Klik link ini gak bakal ketahuan namanya 🤫: ' + urlFinalAnon)}`, '_blank');
+        }
+
+        function submitPesanKeWA() {
+            const isiTeks = document.getElementById('text-anon-msg-box').value;
+            const tautanQuery = new URLSearchParams(window.location.search);
+            if(!isiTeks) return alert("Ketik isi pesannya dulu ya!");
+            
+            let cekFoto = b64FotoAnon ? "*(Ada lampiran foto di chat setelah ini)*" : "*(Tanpa Foto)*";
+            const gabungFormat = `*KIRIMAN PESAN ANONIM*\n\nTopik: "${decodeURIComponent(tautanQuery.get('q'))}"\nPesan: "${isiTeks}"\nLampiran Foto: ${cekFoto}`;
+            
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(gabungFormat)}`, '_blank');
+            if(b64FotoAnon) {
+                alert("Teks berhasil terkirim! Karena kamu menyertakan foto, silakan kirimkan gambarnya secara langsung di WhatsApp ya.");
+            }
+        }
+
+        // --- LOGIKA UTAMA: AMPLOP UCAPAN ---
+        function prosesTautanAmplop() {
+            const namaPengirim = document.getElementById('input-amp-sender').value || "Anonim";
+            const isiPesanSurat = document.getElementById('text-amp-msg-box').value;
+            if(!isiPesanSurat) return alert("Isi teks surat ucapan wajib diisi!");
+
+            const penandaWaktu = Date.now();
+            if (b64FotoAmp) localStorage.setItem('rafun_store_img_' + penandaWaktu, b64FotoAmp);
+
+            const domainAwal = window.location.href.split('?')[0];
+            urlFinalAmp = `${domainAwal}?id=${penandaWaktu}&from=${encodeURIComponent(namaPengirim)}&msg=${encodeURIComponent(isiPesanSurat)}`;
+            document.getElementById('html-amp-link-box').innerText = urlFinalAmp;
+            document.getElementById('amp-view-1').classList.add('hidden');
+            document.getElementById('amp-view-2').classList.remove('hidden');
+        }
+
+        function bagikanAmpKeWA() {
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent('Ada hadiah amplop digital spesial buat kamu nih, coba buka deh: ' + urlFinalAmp)}`, '_blank');
+        }
+
+        function bukaMekanikAmplop() {
+            const elemenAmplop = document.getElementById('html-envelope-el');
+            if (elemenAmplop.classList.contains('open')) return;
+            elemenAmplop.classList.add('open');
+            document.getElementById('info-envelope-status').innerText = "MEMBUKA...";
+            
+            const tautanQuery = new URLSearchParams(window.location.search);
+            setTimeout(() => {
+                document.getElementById('text-amp-final-msg').innerText = decodeURIComponent(tautanQuery.get('msg'));
+                document.getElementById('text-amp-final-sender').innerText = decodeURIComponent(tautanQuery.get('from'));
+                document.getElementById('html-reveal-box').classList.remove('hidden');
+                document.getElementById('info-envelope-status').innerText = "TERBUKA";
+            }, 400);
+        }
+
+        function kirimBalasanKontanAmp() {
+            const namaBalas = document.getElementById('input-reply-name').value || "Anonim";
+            const teksBalas = document.getElementById('text-reply-msg').value;
+            const tautanQuery = new URLSearchParams(window.location.search);
+            if(!teksBalas) return alert("Tulis isi teks balasannya dulu bro!");
+
+            const formatKirimBalasan = `*SURAT BALASAN UCAPAN*\n\nDari: ${namaBalas}\nBalasan: "${teksBalas}"\n\n_(Link asal dari surat ${decodeURIComponent(tautanQuery.get('from'))})_`;
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(formatKirimBalasan)}`, '_blank');
+        }
+    </script>
+</body>
+</html>
